@@ -57,7 +57,7 @@ public struct CongratulationView: View {
             }
             .background(Color.button) // Blue button color
             .cornerRadius(30)
-            .padding(.horizontal, 50) // Center the button
+            .padding(.horizontal, 40) // Center the button
             
             Button(action: {
                 // Add Back action here

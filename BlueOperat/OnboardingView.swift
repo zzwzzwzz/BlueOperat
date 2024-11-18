@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct OnboardingView: View {
     public var body: some View {
-        VStack(alignment: .center, spacing: 20) {
+        VStack(spacing: 20) {
             Spacer() // Push content towards the center
             
             // Add image
@@ -30,7 +30,8 @@ public struct OnboardingView: View {
                 .font(.subheadline)
                 .foregroundColor(Color.subText)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 50)
+                .padding(.horizontal, 40)
+                .padding(.top, 15)
             
             HStack(spacing: 8) {
                 RoundedRectangle(cornerRadius: 8)
@@ -52,7 +53,7 @@ public struct OnboardingView: View {
                 // Add Button action
             }) {
                 Text("Next")
-                    .font(.custom("SF Pro Text", size: 20))
+                    .font(.system(size: 20))
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)

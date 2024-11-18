@@ -9,14 +9,14 @@ import SwiftUI
 
 public struct CongratulationView: View {
     public var body: some View {
-        VStack(spacing: 20) { // Add spacing between elements
+        VStack(spacing: 16) { // Add spacing between elements
             Spacer() // Push content towards the center
-            
             Text("Congratulations!")
-                .font(.custom("SF Pro Text", size: 32))
+                .font(.largeTitle)
                 .foregroundColor(Color.black)
-                .fontWeight(.bold)
-                .padding(.bottom, 10) // Padding between title and text
+                .fontWeight(.semibold)
+                .padding(.bottom, 10)
+                .padding(.top, 20)
             
             // Add image
             Image("Congratulation")
@@ -26,31 +26,31 @@ public struct CongratulationView: View {
                 .padding(.horizontal, 40)
             
             Text("We’ve found 3 chats for you!")
-                .font(.custom("SF Pro Text", size: 24))
+                .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(Color(red: 0.51, green: 0.78, blue: 0.90))
-                .padding(.top, 30)
+                .foregroundColor(Color.theme)
+                .padding(.top, 10)
             
             Text("Start now to make new friends!")
-                .font(.custom("SF Pro Text", size: 16))
-                .fontWeight(.bold)
+                .font(.system(size: 16))
+                .fontWeight(.semibold)
                 .foregroundColor(Color.subText)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 40)
+                .padding(.top, 10)
             
             Text("You should reply in 24 hours to remain being a part of your group")
-                .font(.custom("SF Pro Text", size: 16))
+                .font(.system(size: 16))
                 .foregroundColor(Color.subText)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
             
-            Spacer() // Add space between text and buttons
+            Spacer()
             
             Button(action: {
                 // Add Button action here
             }) {
                 Text("Start Chat")
-                    .font(.custom("SF Pro Text", size: 20))
+                    .font(.system(size: 20))
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -67,7 +67,7 @@ public struct CongratulationView: View {
                     .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
             }
             
-            Spacer() // Bottom padding
+            Spacer()
         }
         .background(Color.white)
     }

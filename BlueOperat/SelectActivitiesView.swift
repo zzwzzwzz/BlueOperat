@@ -12,28 +12,28 @@ public struct SelectActivitiesView: View {
     
     let locations = [
         "🎨 Art", "🐶 Animals", "💃 Dance", "🧵 DIY",
-        "🥘 Food", "🎮 Gaming", "🎬 Movie", "🎶 Music", "🏜️ Outdoor", "⚽️ Sports"
+        "🥘 Food", "🎮 Gaming", "🎬 Movie", "🎶 Music",
+        "🏜️ Outdoor", "⚽️ Sports"
     ]
     
     public var body: some View {
         VStack {
             Spacer()
             VStack(spacing: 8) {
-
-                VStack(alignment: .leading) {
-                    Text("What activities are \n you interested in?")
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("What activities are\nyou interested in?")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(Color.black)
-                        
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Text("(Choose 1 only)")
                         .font(.system(size: 16))
                         .foregroundColor(Color.gray)
                         .padding(.bottom, 20)
                 }
-                .frame(width: 360, height: 150)
-
+                .padding(.horizontal, 20)
+                
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 30) {
                     ForEach(locations, id: \.self) { location in
                         Button(action: {
@@ -52,7 +52,6 @@ public struct SelectActivitiesView: View {
                 }
                 .padding(.bottom, 30)
             }
-            
             .padding(10)
             .background(Color.white)
             .cornerRadius(30)
@@ -60,13 +59,11 @@ public struct SelectActivitiesView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 16)
             
-            .padding(.horizontal, 10)
-            
             HStack(spacing: 8) {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.gray.opacity(0.4))
                     .frame(width: 12, height: 8)
-                            
+                
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.gray.opacity(0.4))
                     .frame(width: 12, height: 8)
@@ -77,7 +74,7 @@ public struct SelectActivitiesView: View {
             }
             .padding(.top, 20)
             .padding(.bottom, 20)
-                        
+            
             Button(action: {
                 // Next button action
             }) {

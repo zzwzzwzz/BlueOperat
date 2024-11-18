@@ -6,13 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		0568A1C52CEBFDC100AB9A33 /* SelectNewActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0568A1C42CEBFDA800AB9A33 /* SelectNewActivity.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		0515F5C02CE6BFDD007439A5 /* BlueOperat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueOperat.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0568A1C42CEBFDA800AB9A33 /* SelectNewActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNewActivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -39,7 +34,6 @@
 			children = (
 				0515F5C22CE6BFDD007439A5 /* BlueOperat */,
 				0515F5C12CE6BFDD007439A5 /* Products */,
-				0568A1C42CEBFDA800AB9A33 /* SelectNewActivity.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,7 +119,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0568A1C52CEBFDC100AB9A33 /* SelectNewActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

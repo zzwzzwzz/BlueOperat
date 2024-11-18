@@ -63,8 +63,8 @@ public struct CongratulationView: View {
                 // Add Back action here
             }) {
                 Text("Back")
-                    .font(.custom("SF Pro Text", size: 16))
-                    .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
+                    .font(.system(size: 16))
+                    .foregroundColor(Color.subText)
             }
             
             Spacer()

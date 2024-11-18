@@ -20,7 +20,7 @@ public struct SelectLocationView: View {
             Spacer()
             VStack(spacing: 8) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Where are you\nlocated?")
+                    Text("Where are you located?")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(Color.black)

@@ -8,9 +8,9 @@
 import SwiftUI
 
 public struct SelectActivitiesView: View {
-    @State private var selectedLocation: String? = nil
+    @State private var selectedActivities: [String] = []
     
-    let locations = [
+    let activities = [
         "🎨 Art", "🐶 Animals", "💃 Dance", "🧵 DIY",
         "🥘 Food", "🎮 Gaming", "🎬 Movie", "🎶 Music",
         "🏜️ Outdoor", "⚽️ Sports"
@@ -21,32 +21,32 @@ public struct SelectActivitiesView: View {
             Spacer()
             VStack(spacing: 8) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("What activities are\nyou interested in?")
+                    Text("What activities are you interested in?")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(Color.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text("(Choose 1 only)")
+                    Text("(Choose 3 only)")
                         .font(.system(size: 16))
                         .foregroundColor(Color.gray)
                         .padding(.bottom, 20)
                 }
                 .padding(.horizontal, 20)
                 
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 30) {
-                    ForEach(locations, id: \.self) { location in
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                    ForEach(activities, id: \.self) { activities in
                         Button(action: {
-                            selectedLocation = location
+                            toggleSelection(for: activities)
                         }) {
-                            Text(location)
+                            Text(activities)
                                 .font(.system(size: 16))
-                                .fontWeight(.regular)
-                                .foregroundColor(selectedLocation == location ? .white : .black)
+                                .foregroundColor(selectedActivities.contains(activities) ? .white : .black)
                                 .frame(maxWidth: .infinity, minHeight: 50)
-                                .background(selectedLocation == location ? Color.theme : Color.theme.opacity(0.2))
+                                .background(selectedActivities.contains(activities) ? Color.theme : Color.theme.opacity(0.2))
                                 .cornerRadius(30)
                         }
+                        .disabled(!selectedActivities.contains(activities) && selectedActivities.count >= 3)
                         .padding(.horizontal, 10)
                     }
                 }
@@ -101,6 +101,14 @@ public struct SelectActivitiesView: View {
         }
         .background(Color.white)
         .ignoresSafeArea()
+    }
+    
+    private func toggleSelection(for activity: String) {
+        if selectedActivities.contains(activity) {
+            selectedActivities.removeAll { $0 == activity }
+        } else if selectedActivities.count < 3 {
+            selectedActivities.append(activity)
+        }
     }
 }
 

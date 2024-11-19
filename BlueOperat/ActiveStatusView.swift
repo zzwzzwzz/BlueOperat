@@ -77,7 +77,6 @@ struct ActiveStatusView: View {
             .background(Color.white)
             .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
         }
-        .background(Color(UIColor.systemGray6))
     }
 }
 
@@ -93,11 +92,9 @@ struct UserCard: View {
                     .resizable()
                     .scaledToFill()
                     .frame(width: 80, height: 80)
-                    .clipShape(Circle()) // Ensures circular profile picture
-//                Circle()
-//                    .fill(Color(white: 0.95))
-//                    .frame(width: 80, height: 80)
-                
+                    .clipShape(Circle())
+                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 4)
+   
                 if user.isOnline {
                     ZStack {
                         Circle()
@@ -128,9 +125,6 @@ struct UserCard: View {
             }
         }
         .padding(10)
-//        .background(Color.white)
-//        .cornerRadius(20)
-//        .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 2)
     }
 }
 
@@ -142,23 +136,14 @@ struct TabBarItem: View {
     var body: some View {
         VStack(spacing: 4) {
             Image(systemName: icon)
-                .foregroundColor(isSelected ? .theme : .gray)
+                .foregroundColor(isSelected ? Color.theme : .gray)
             Text(text)
                 .font(.system(size: 12))
-                .foregroundColor(isSelected ? .theme : .gray)
+                .foregroundColor(isSelected ? Color.theme : .gray)
         }
         .frame(maxWidth: .infinity)
     }
 }
-
-//struct UserProfile: Identifiable {
-//    let id = UUID()
-//    let name: String
-//    let imageUrl: String
-//    let hoursLeft: Int
-//    let isOnline: Bool
-//    var isFavorite: Bool = false
-//}
 
 #Preview {
     ActiveStatusView()

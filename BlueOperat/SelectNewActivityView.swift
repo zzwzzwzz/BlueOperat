@@ -26,6 +26,7 @@ public struct SelectNewActivityView: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 10)
                     
                     Text("(Choose 1 only)")
                         .font(.system(size: 16))

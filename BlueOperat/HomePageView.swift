@@ -108,7 +108,7 @@ struct HomePageView: View {
                     .background(Color.white)
                     .cornerRadius(30, corners: [.topLeft, .topRight])
                     
-                    // New Tab Bar
+                    // Tab Bar
                     HStack(spacing: 0) {
                         TabBarItem(icon: "house", text: "Home", isSelected: true)
                         TabBarItem(icon: "bubble.left", text: "Chats", isSelected: false)

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DD6A4F942CF3796F00FBB695 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = DD6A4F932CF3796F00FBB695 /* GoogleGenerativeAI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		0515F5C02CE6BFDD007439A5 /* BlueOperat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueOperat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD6A4F942CF3796F00FBB695 /* GoogleGenerativeAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = BlueOperat;
 			packageProductDependencies = (
+				DD6A4F932CF3796F00FBB695 /* GoogleGenerativeAI */,
 			);
 			productName = BlueOperat;
 			productReference = 0515F5C02CE6BFDD007439A5 /* BlueOperat.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 0515F5B72CE6BFDD007439A5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DD6A4F922CF3796F00FBB695 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0515F5C12CE6BFDD007439A5 /* Products */;
 			projectDirPath = "";
@@ -322,6 +331,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD6A4F922CF3796F00FBB695 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD6A4F932CF3796F00FBB695 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD6A4F922CF3796F00FBB695 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0515F5B82CE6BFDD007439A5 /* Project object */;
 }

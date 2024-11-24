@@ -13,7 +13,7 @@ public struct OnboardingView: View {
 
     public var body: some View {
         // Wrap everything in a NavigationView
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 20) {
                 Spacer() // Push content towards the center
                 
@@ -55,29 +55,26 @@ public struct OnboardingView: View {
                 .padding(.bottom, 20)
                 
                 // Use NavigationLink for the Next button
-                NavigationLink(
-                    destination: SelectLocationView(),
-                    isActive: $navigateToLocationView
-                ) {
-                    Button(action: {
-                        // Trigger the navigation
-                        navigateToLocationView = true
-                    }) {
-                        Text("Next")
-                            .font(.system(size: 20))
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                    }
-                    .background(Color.button)
-                    .cornerRadius(30)
-                    .padding(.horizontal, 40) // Center the button
+                Button(action: {
+                    navigateToLocationView = true
+                }) {
+                    Text("Next")
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.button)
+                        .cornerRadius(30)
+                        .padding(.horizontal, 40)
                 }
                 
                 Spacer()
             }
             .background(Color.white)
             .navigationBarHidden(true) // Hide navigation bar for a cleaner look
+            .navigationDestination(isPresented: $navigateToLocationView) {
+                SelectLocationView()
+            }
         }
     }
 }

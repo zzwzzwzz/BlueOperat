@@ -49,7 +49,7 @@ public struct CongratulationView: View {
             Spacer()
             
             // Navigation Link to ChatMenuView
-            NavigationLink(destination: ContentView()) { // Need to link the destination to ChatMenuView later
+            NavigationLink(destination: ChatMenuView()) {
                 Text("Start Chat")
                     .font(.system(size: 20))
                     .foregroundColor(.white)

@@ -28,12 +28,12 @@ struct HomePageView: View {
                             
                             Spacer()
                             
-                            Button(action: {}) {
-                                Image(systemName: "line.horizontal.3")
-                                    .font(.title2)
-                                    .foregroundColor(.white)
-                                    .padding(.top, 10)
-                            }
+//                            Button(action: {}) {
+//                                Image(systemName: "line.horizontal.3")
+//                                    .font(.title2)
+//                                    .foregroundColor(.white)
+//                                    .padding(.top, 10)
+//                            }
                         }
                         .padding()
                         .background(Color.theme)
@@ -228,7 +228,7 @@ struct ActivityCard: View {
         }
         .padding()
         .background(Color.theme.opacity(0.1))
-        .cornerRadius(15)
+        .cornerRadius(20)
         .shadow(color: Color.black.opacity(0.05), radius: 5)
     }
 }

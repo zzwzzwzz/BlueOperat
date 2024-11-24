@@ -25,7 +25,7 @@ public struct SelectActivitiesView: View {
             VStack(spacing: 8) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("What activities are you interested in?")
-                        .font(.title)
+                        .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(Color.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -33,11 +33,11 @@ public struct SelectActivitiesView: View {
                     Text("(Choose 3 only)")
                         .font(.system(size: 16))
                         .foregroundColor(Color.gray)
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 30)
                 }
                 .padding(.horizontal, 20)
                 
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 30) {
                     ForEach(activities, id: \.self) { activity in
                         Button(action: {
                             toggleSelection(for: activity)

@@ -9,6 +9,7 @@ import SwiftUI
 
 public struct CongratulationView: View {
     @Environment(\.presentationMode) var presentationMode
+    @State private var navigateToChatMenu = false
 
     public var body: some View {
         VStack(spacing: 16) {
@@ -48,17 +49,19 @@ public struct CongratulationView: View {
             
             Spacer()
             
-            // Navigation Link to ChatMenuView
-            NavigationLink(destination: ChatMenuView()) {
+            // Navigation to ChatMenuView
+            Button(action: {
+                navigateToChatMenu = true
+            }) {
                 Text("Start Chat")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
             }
-            .background(Color.button) // Blue button color
+            .background(Color.button)
             .cornerRadius(30)
-            .padding(.horizontal, 40) // Center the button
+            .padding(.horizontal, 40)
             
             // Custom Back button below Next button
             Button(action: {
@@ -74,6 +77,9 @@ public struct CongratulationView: View {
         }
         .background(Color.white)
         .navigationBarBackButtonHidden(true) // Hide the default back button on the top left
+        .fullScreenCover(isPresented: $navigateToChatMenu) {
+            ChatMenuView()
+        }
     }
 }
 

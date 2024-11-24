@@ -19,19 +19,9 @@ struct ActiveStatusView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Header with back button
             HStack(spacing: 16) {
-//                Button(action: {
-//                    // Back button action
-//                }) {
-//                    Image(systemName: "chevron.left")
-//                        .foregroundColor(.theme)
-//                        .imageScale(.large)
-//                }
-                
                 Text("Active Status")
                     .font(.system(size: 32, weight: .bold))
-                
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -66,17 +56,6 @@ struct ActiveStatusView: View {
             }
             
             Spacer()
-            
-//            // Tab Bar
-//            HStack(spacing: 0) {
-//                TabBarItem(icon: "house", text: "Home", isSelected: false)
-//                TabBarItem(icon: "bubble.left", text: "Chats", isSelected: true)
-//                TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
-//                TabBarItem(icon: "tree", text: "Activities", isSelected: false)
-//            }
-//            .padding(.top, 10)
-//            .background(Color.white)
-//            .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
         }
     }
 }

@@ -207,26 +207,6 @@ struct PastActivityView: View {
                                 organizer: "Whatever",
                                 isPast: true
                             )
-                            
-                            // Uncomment this if it's nessesary
-//                            Spacer()
-//                            ActivityTimeSlot(
-//                                startTime: "13:15",
-//                                endTime: "14:45",
-//                                activity: "Mindful and Demure",
-//                                location: "Metal Stick and Circle",
-//                                organizer: "Whatever",
-//                                isPast: true
-//                            )
-//                            Spacer()
-//                            ActivityTimeSlot(
-//                                startTime: "15:10",
-//                                endTime: "16:40",
-//                                activity: "Mindful and Demure",
-//                                location: "Metal Stick and Circle",
-//                                organizer: "Whatever",
-//                                isPast: true
-//                            )
                         }
                     }
                 }
@@ -235,17 +215,6 @@ struct PastActivityView: View {
                 .cornerRadius(30, corners: [.topLeft, .topRight])
                 .frame(maxHeight: .infinity, alignment: .top)
                 .padding(.bottom, -1000) // Pulls the white frame down further
-                
-//                // Tab bar for navigation
-//                HStack(spacing: 0) {
-//                    TabBarItem(icon: "house", text: "Home", isSelected: false)
-//                    TabBarItem(icon: "bubble.left", text: "Chats", isSelected: false)
-//                    TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
-//                    TabBarItem(icon: "calendar", text: "Activities", isSelected: true)
-//                }
-//                .padding(.top, 10)
-//                .background(Color.white)
-//                .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
             }
             .navigationBarHidden(true)
             .background(Color.theme)

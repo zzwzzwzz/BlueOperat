@@ -95,13 +95,6 @@ struct HomePageView: View {
                                         time: "16:00 - 21:00",
                                         location: "Meet at Darling Harbour, W Hotel"
                                     )
-                                    
-//                                    ActivityCard(
-//                                        title: "Mindful and Demure Meditation",
-//                                        date: "Friday 30 Nov 2024",
-//                                        time: "11:00 - 13:00",
-//                                        location: "Meet at Metal Stick and Circle"
-//                                    )
                                 }
                                 .padding(.horizontal)
                             }
@@ -110,17 +103,6 @@ struct HomePageView: View {
                     .background(Color.white)
                     .cornerRadius(30, corners: [.topLeft, .topRight])
                     .padding(.bottom, -1000) // Pulls the white frame down further
-                    
-//                    // Tab Bar
-//                    HStack(spacing: 0) {
-//                        TabBarItem(icon: "house", text: "Home", isSelected: true)
-//                        TabBarItem(icon: "bubble.left", text: "Chats", isSelected: false)
-//                        TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
-//                        TabBarItem(icon: "calendar", text: "Activities", isSelected: false)
-//                    }
-//                    .padding(.top, 10)
-//                    .background(Color.white)
-//                    .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
                 }
 //                .navigationBarHidden(true)
                 .background(Color.theme)
@@ -153,24 +135,6 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
-
-//// HomeTabBarItem component
-//struct HomeTabBarItem: View {
-//    let icon: String
-//    let text: String
-//    let isSelected: Bool
-//
-//    var body: some View {
-//        VStack(spacing: 4) {
-//            Image(systemName: icon)
-//                .foregroundColor(isSelected ? Color.theme : .gray)
-//            Text(text)
-//                .font(.system(size: 12))
-//                .foregroundColor(isSelected ? Color.theme : .gray)
-//        }
-//        .frame(maxWidth: .infinity)
-//    }
-//}
 
 struct CircularGroupCard: View {
     let image: String?

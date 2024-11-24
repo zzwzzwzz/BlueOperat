@@ -21,6 +21,7 @@ public struct SelectLocationView: View {
     public var body: some View {
         VStack {
             Spacer()
+            Spacer()
             VStack(spacing: 8) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Where are you located?")
@@ -28,6 +29,7 @@ public struct SelectLocationView: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 10)
                     
                     Text("(Choose 1 only)")
                         .font(.system(size: 16))

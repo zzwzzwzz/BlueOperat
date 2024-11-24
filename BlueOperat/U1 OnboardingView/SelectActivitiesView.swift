@@ -22,6 +22,7 @@ public struct SelectActivitiesView: View {
     public var body: some View {
         VStack {
             Spacer()
+            Spacer()
             VStack(spacing: 8) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("What activities are you interested in?")
@@ -29,6 +30,7 @@ public struct SelectActivitiesView: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 10)
                     
                     Text("(Choose 3 only)")
                         .font(.system(size: 16))

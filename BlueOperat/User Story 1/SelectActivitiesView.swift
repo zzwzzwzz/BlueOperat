@@ -16,6 +16,9 @@ public struct SelectActivitiesView: View {
         "🏜️ Outdoor", "⚽️ Sports"
     ]
     
+    // Use @Environment to access the presentation mode for navigation
+    @Environment(\.presentationMode) var presentationMode
+
     public var body: some View {
         VStack {
             Spacer()
@@ -35,18 +38,18 @@ public struct SelectActivitiesView: View {
                 .padding(.horizontal, 20)
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                    ForEach(activities, id: \.self) { activities in
+                    ForEach(activities, id: \.self) { activity in
                         Button(action: {
-                            toggleSelection(for: activities)
+                            toggleSelection(for: activity)
                         }) {
-                            Text(activities)
+                            Text(activity)
                                 .font(.system(size: 16))
-                                .foregroundColor(selectedActivities.contains(activities) ? .white : .black)
+                                .foregroundColor(selectedActivities.contains(activity) ? .white : .black)
                                 .frame(maxWidth: .infinity, minHeight: 50)
-                                .background(selectedActivities.contains(activities) ? Color.theme : Color.theme.opacity(0.2))
+                                .background(selectedActivities.contains(activity) ? Color.theme : Color.theme.opacity(0.2))
                                 .cornerRadius(30)
                         }
-                        .disabled(!selectedActivities.contains(activities) && selectedActivities.count >= 3)
+                        .disabled(!selectedActivities.contains(activity) && selectedActivities.count >= 3)
                         .padding(.horizontal, 10)
                     }
                 }
@@ -75,9 +78,8 @@ public struct SelectActivitiesView: View {
             .padding(.top, 20)
             .padding(.bottom, 20)
             
-            Button(action: {
-                // Next button action
-            }) {
+            // NavigationLink to CongratulationView when Next is pressed
+            NavigationLink(destination: CongratulationView()) {
                 Text("Next")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
@@ -88,8 +90,9 @@ public struct SelectActivitiesView: View {
             .cornerRadius(30)
             .padding(.horizontal, 40)
             
+            // Custom Back button using the presentationMode
             Button(action: {
-                // Back button action
+                presentationMode.wrappedValue.dismiss() // Go back to the previous screen
             }) {
                 Text("Back")
                     .font(.system(size: 16))
@@ -101,6 +104,7 @@ public struct SelectActivitiesView: View {
         }
         .background(Color.white)
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden(true) // Hide the default back button
     }
     
     private func toggleSelection(for activity: String) {

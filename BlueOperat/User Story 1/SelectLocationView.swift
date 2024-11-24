@@ -15,6 +15,9 @@ public struct SelectLocationView: View {
         "Adelaide", "Newcastle"
     ]
     
+    // Use @Environment to access the presentation mode for navigation
+    @Environment(\.presentationMode) var presentationMode
+
     public var body: some View {
         VStack {
             Spacer()
@@ -70,7 +73,8 @@ public struct SelectLocationView: View {
             .padding(.top, 20)
             .padding(.bottom, 20)
             
-            Button(action: { /* Next button action */ }) {
+            // NavigationLink to SelectActivitiesView
+            NavigationLink(destination: SelectActivitiesView()) {
                 Text("Next")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
@@ -81,7 +85,10 @@ public struct SelectLocationView: View {
             .cornerRadius(30)
             .padding(.horizontal, 40)
             
-            Button(action: { /* Back button action */ }) {
+            Button(action: {
+                // Dismiss the current view to go back
+                presentationMode.wrappedValue.dismiss()
+            }) {
                 Text("Back")
                     .font(.system(size: 16))
                     .foregroundColor(Color.subText)
@@ -92,6 +99,7 @@ public struct SelectLocationView: View {
         }
         .background(Color.white)
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden(true) // Hide default back button
     }
 }
 

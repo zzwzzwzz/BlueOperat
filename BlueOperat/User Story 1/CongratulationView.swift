@@ -8,8 +8,10 @@
 import SwiftUI
 
 public struct CongratulationView: View {
+    @Environment(\.presentationMode) var presentationMode
+
     public var body: some View {
-        VStack(spacing: 16) { // Add spacing between elements
+        VStack(spacing: 16) {
             Spacer() // Push content towards the center
             Text("Congratulations!")
                 .font(.largeTitle)
@@ -46,9 +48,8 @@ public struct CongratulationView: View {
             
             Spacer()
             
-            Button(action: {
-                // Add Button action here
-            }) {
+            // Navigation Link to ChatMenuView
+            NavigationLink(destination: ContentView()) { // Need to link the destination to ChatMenuView later
                 Text("Start Chat")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
@@ -59,17 +60,20 @@ public struct CongratulationView: View {
             .cornerRadius(30)
             .padding(.horizontal, 40) // Center the button
             
+            // Custom Back button below Next button
             Button(action: {
-                // Add Back action here
+                presentationMode.wrappedValue.dismiss() // Go back to the previous screen
             }) {
                 Text("Back")
                     .font(.system(size: 16))
                     .foregroundColor(Color.subText)
             }
+            .padding(.top, 8)
             
             Spacer()
         }
         .background(Color.white)
+        .navigationBarBackButtonHidden(true) // Hide the default back button on the top left
     }
 }
 

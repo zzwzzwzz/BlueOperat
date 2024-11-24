@@ -21,13 +21,13 @@ struct ActiveStatusView: View {
         VStack(spacing: 0) {
             // Header with back button
             HStack(spacing: 16) {
-                Button(action: {
-                    // Back button action
-                }) {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.theme)
-                        .imageScale(.large)
-                }
+//                Button(action: {
+//                    // Back button action
+//                }) {
+//                    Image(systemName: "chevron.left")
+//                        .foregroundColor(.theme)
+//                        .imageScale(.large)
+//                }
                 
                 Text("Active Status")
                     .font(.system(size: 32, weight: .bold))
@@ -42,11 +42,12 @@ struct ActiveStatusView: View {
                 .foregroundColor(.gray)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 20)
-                .padding(.vertical, 12)
+                .padding(.vertical, 4)
             
             // Main content
             ScrollView {
                 VStack(spacing: 8) {
+
                     // User cards container
                     VStack(spacing: 16) {
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
@@ -66,16 +67,16 @@ struct ActiveStatusView: View {
             
             Spacer()
             
-            // Tab Bar
-            HStack(spacing: 0) {
-                TabBarItem(icon: "house", text: "Home", isSelected: false)
-                TabBarItem(icon: "bubble.left", text: "Chats", isSelected: true)
-                TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
-                TabBarItem(icon: "tree", text: "Activities", isSelected: false)
-            }
-            .padding(.top, 10)
-            .background(Color.white)
-            .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
+//            // Tab Bar
+//            HStack(spacing: 0) {
+//                TabBarItem(icon: "house", text: "Home", isSelected: false)
+//                TabBarItem(icon: "bubble.left", text: "Chats", isSelected: true)
+//                TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
+//                TabBarItem(icon: "tree", text: "Activities", isSelected: false)
+//            }
+//            .padding(.top, 10)
+//            .background(Color.white)
+//            .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
         }
     }
 }

@@ -28,12 +28,13 @@ struct HomePageView: View {
                             
                             Spacer()
                             
-//                            Button(action: {}) {
-//                                Image(systemName: "line.horizontal.3")
-//                                    .font(.title2)
-//                                    .foregroundColor(.white)
-//                                    .padding(.top, 10)
-//                            }
+                            Button(action: {}) {
+                                Image(systemName: "gearshape")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .padding(.top, 10)
+                                    .padding(.trailing, 10)
+                            }
                         }
                         .padding()
                         .background(Color.theme)
@@ -49,7 +50,7 @@ struct HomePageView: View {
                                 TextField("Search", text: $searchText)
                             }
                             .padding(.horizontal, 15)
-                            .padding(.vertical, 8)
+                            .padding(.vertical, 10)
                             .background(Color.white)
                             .cornerRadius(20)
                             .padding(.horizontal)
@@ -60,7 +61,7 @@ struct HomePageView: View {
                             // Your Groups section
                             VStack(alignment: .leading, spacing: 15) {
                                 Text("Your Groups")
-                                    .font(.system(size: 28, weight: .semibold))
+                                    .font(.system(size: 24, weight: .semibold))
                                     .padding(.horizontal)
                                 
                                 ScrollView(.horizontal, showsIndicators: false) {
@@ -72,14 +73,15 @@ struct HomePageView: View {
                                     .padding(.horizontal, 30)
                                 }
                             }
+                            .padding(.top, 16)
                             
                             // Next Activity section
-                            VStack(alignment: .leading, spacing: 15) {
+                            VStack(alignment: .leading, spacing: 16) {
                                 Text("Next Activity")
-                                    .font(.system(size: 28, weight: .semibold))
+                                    .font(.system(size: 24, weight: .semibold))
                                     .padding(.horizontal)
                                 
-                                VStack(spacing: 20) {
+                                VStack(spacing: 16) {
                                     ActivityCard(
                                         title: "Karaoke City Run",
                                         date: "Friday 28 Nov 2024",
@@ -94,12 +96,12 @@ struct HomePageView: View {
                                         location: "Meet at Darling Harbour, W Hotel"
                                     )
                                     
-                                    ActivityCard(
-                                        title: "Mindful and Demure Meditation",
-                                        date: "Friday 30 Nov 2024",
-                                        time: "11:00 - 13:00",
-                                        location: "Meet at Metal Stick and Circle"
-                                    )
+//                                    ActivityCard(
+//                                        title: "Mindful and Demure Meditation",
+//                                        date: "Friday 30 Nov 2024",
+//                                        time: "11:00 - 13:00",
+//                                        location: "Meet at Metal Stick and Circle"
+//                                    )
                                 }
                                 .padding(.horizontal)
                             }
@@ -107,19 +109,20 @@ struct HomePageView: View {
                     }
                     .background(Color.white)
                     .cornerRadius(30, corners: [.topLeft, .topRight])
+                    .padding(.bottom, -1000) // Pulls the white frame down further
                     
-                    // Tab Bar
-                    HStack(spacing: 0) {
-                        TabBarItem(icon: "house", text: "Home", isSelected: true)
-                        TabBarItem(icon: "bubble.left", text: "Chats", isSelected: false)
-                        TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
-                        TabBarItem(icon: "calendar", text: "Activities", isSelected: false)
-                    }
-                    .padding(.top, 10)
-                    .background(Color.white)
-                    .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
+//                    // Tab Bar
+//                    HStack(spacing: 0) {
+//                        TabBarItem(icon: "house", text: "Home", isSelected: true)
+//                        TabBarItem(icon: "bubble.left", text: "Chats", isSelected: false)
+//                        TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
+//                        TabBarItem(icon: "calendar", text: "Activities", isSelected: false)
+//                    }
+//                    .padding(.top, 10)
+//                    .background(Color.white)
+//                    .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
                 }
-                .navigationBarHidden(true)
+//                .navigationBarHidden(true)
                 .background(Color.theme)
                 
                 // Rat image overlay
@@ -151,23 +154,23 @@ struct RoundedCorner: Shape {
     }
 }
 
-// HomeTabBarItem component
-struct HomeTabBarItem: View {
-    let icon: String
-    let text: String
-    let isSelected: Bool
-    
-    var body: some View {
-        VStack(spacing: 4) {
-            Image(systemName: icon)
-                .foregroundColor(isSelected ? Color.theme : .gray)
-            Text(text)
-                .font(.system(size: 12))
-                .foregroundColor(isSelected ? Color.theme : .gray)
-        }
-        .frame(maxWidth: .infinity)
-    }
-}
+//// HomeTabBarItem component
+//struct HomeTabBarItem: View {
+//    let icon: String
+//    let text: String
+//    let isSelected: Bool
+//
+//    var body: some View {
+//        VStack(spacing: 4) {
+//            Image(systemName: icon)
+//                .foregroundColor(isSelected ? Color.theme : .gray)
+//            Text(text)
+//                .font(.system(size: 12))
+//                .foregroundColor(isSelected ? Color.theme : .gray)
+//        }
+//        .frame(maxWidth: .infinity)
+//    }
+//}
 
 struct CircularGroupCard: View {
     let image: String?
@@ -192,6 +195,7 @@ struct CircularGroupCard: View {
         .frame(width: 100, height: 100)
         .clipShape(Circle())
         .shadow(color: Color.black.opacity(0.1), radius: 20)
+        .padding(.bottom, 20)
     }
 }
 

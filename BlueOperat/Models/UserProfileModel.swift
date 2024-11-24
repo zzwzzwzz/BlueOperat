@@ -1,5 +1,5 @@
 //
-//  UserProfile.swift
+//  UserProfileModel.swift
 //  BlueOperat
 //
 //  Created by Ziwen Zhou on 19/11/2024.

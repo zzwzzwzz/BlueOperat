@@ -57,23 +57,32 @@ struct WeekdayHeader: View {
     var body: some View {
         HStack(spacing: 0) {
             ForEach(0..<7) { index in
-                VStack(spacing: 4) {
-                    Text(weekdays[index])
-                        .font(.system(size: 12))
-                        .foregroundColor(.gray)
-                    Text(dates[index])
-                        .font(.system(size: 16))
+                NavigationLink(destination: {
+                    if dates[index] == "28" {
+                        PastActivityView() // Navigate to `PastActivityView` for day "28"
+                    } else if dates[index] == "29" {
+                        FutureActivityView() // Navigate to the current or another view for "29"
+                    }
+                }) {
+                    VStack(spacing: 4) {
+                        Text(weekdays[index])
+                            .font(.system(size: 12))
+                            .foregroundColor(.gray)
+                        Text(dates[index])
+                            .font(.system(size: 16))
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    .background(dates[index] == selectedDate ? Color.theme.opacity(0.2) : Color.clear)
+                    .cornerRadius(8)
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 8)
-                // Highlight the selected date
-                .background(dates[index] == selectedDate ? Color.theme.opacity(0.2) : Color.clear)
-                .cornerRadius(8)
+                .buttonStyle(PlainButtonStyle()) // Ensure NavigationLink behaves like a button
             }
         }
         .padding(.horizontal)
     }
 }
+
 
 // Displays a time slot with activity details (time, activity name, location, organizer).
 // The background color changes based on whether the activity is past or future.
@@ -225,17 +234,18 @@ struct PastActivityView: View {
                 .background(Color.white)
                 .cornerRadius(30, corners: [.topLeft, .topRight])
                 .frame(maxHeight: .infinity, alignment: .top)
+                .padding(.bottom, -1000) // Pulls the white frame down further
                 
-                // Tab bar for navigation
-                HStack(spacing: 0) {
-                    TabBarItem(icon: "house", text: "Home", isSelected: false)
-                    TabBarItem(icon: "bubble.left", text: "Chats", isSelected: false)
-                    TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
-                    TabBarItem(icon: "calendar", text: "Activities", isSelected: true)
-                }
-                .padding(.top, 10)
-                .background(Color.white)
-                .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
+//                // Tab bar for navigation
+//                HStack(spacing: 0) {
+//                    TabBarItem(icon: "house", text: "Home", isSelected: false)
+//                    TabBarItem(icon: "bubble.left", text: "Chats", isSelected: false)
+//                    TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
+//                    TabBarItem(icon: "calendar", text: "Activities", isSelected: true)
+//                }
+//                .padding(.top, 10)
+//                .background(Color.white)
+//                .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
             }
             .navigationBarHidden(true)
             .background(Color.theme)

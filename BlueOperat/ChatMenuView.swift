@@ -9,7 +9,7 @@ struct ChatMenuView: View {
     var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $selectedTab) {
-                HomeView()
+                HomePageView()
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
@@ -27,7 +27,7 @@ struct ChatMenuView: View {
                     }
                     .tag(2)
                 
-                ActivitiesView()
+                FutureActivityView()
                     .tabItem {
                         Label("Activities", systemImage: "leaf")
                     }
@@ -79,16 +79,18 @@ struct ChatsView: View {
                 .listStyle(PlainListStyle())
             }
             .navigationTitle("Chats")
-            .toolbar {
-                Button(action: {
-                    showNewChatView = true
-                }) {
-                    Image(systemName: "square.and.pencil")
-                }
-            }
-            .sheet(isPresented: $showNewChatView) {
-                Text("New Chat View Content") // Placeholder
-            }
+            .navigationBarTitleDisplayMode(.inline)
+            .padding(.top, 10)
+//            .toolbar {
+//                Button(action: {
+//                    showNewChatView = true
+//                }) {
+//                    Image(systemName: "square.and.pencil")
+//                }
+//            }
+//            .sheet(isPresented: $showNewChatView) {
+//                Text("New Chat View Content") // Placeholder
+//            }
         }
     }
     
@@ -131,16 +133,6 @@ struct ChatsView: View {
         }
     }
 }
-
-
-struct MessageModel: Identifiable {
-    var id: UUID = UUID()
-    var message: String
-    var isBot: Bool
-    var timestamp: Date = Date()
-}
-
-
 
 struct ChatRoomView: View {
     let groupName: String
@@ -309,7 +301,6 @@ struct MessageBubble: View {
     }
 }
 
-
 struct MessageInputView: View {
     @Binding var newMessage: String
     var sendMessage: () -> Void
@@ -330,9 +321,6 @@ struct MessageInputView: View {
         }.padding(.top)
     }
 }
-
-
-
 
 struct ChatRow: View {
     let imageName: String
@@ -393,10 +381,7 @@ struct ChatRow: View {
 }
 
 // Placeholder Views
-struct HomeView: View { var body: some View { Text("Home") } }
 struct FavouritesView: View { var body: some View { Text("Favourites") } }
-struct ActivitiesView: View { var body: some View { Text("Activities") } }
-
 
 struct ChatMenuView_Previews: PreviewProvider {
     static var previews: some View {

@@ -78,19 +78,20 @@ struct FutureActivityView: View {
                 .background(Color.white)
                 .cornerRadius(30, corners: [.topLeft, .topRight])
                 .frame(maxHeight: .infinity, alignment: .top) // Keep content pinned to the top
+                .padding(.bottom, -1000) // Pulls the white frame down further
                 
-                // Tab bar
-                HStack(spacing: 0) {
-                    TabBarItem(icon: "house", text: "Home", isSelected: false)
-                    TabBarItem(icon: "bubble.left", text: "Chats", isSelected: false)
-                    TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
-                    TabBarItem(icon: "calendar", text: "Activities", isSelected: true)
-                }
-                .padding(.top, 10)
-                .background(Color.white)
-                .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
+//                // Tab bar
+//                HStack(spacing: 0) {
+//                    TabBarItem(icon: "house", text: "Home", isSelected: false)
+//                    TabBarItem(icon: "bubble.left", text: "Chats", isSelected: false)
+//                    TabBarItem(icon: "heart", text: "Favourites", isSelected: false)
+//                    TabBarItem(icon: "calendar", text: "Activities", isSelected: true)
+//                }
+//                .padding(.top, 10)
+//                .background(Color.white)
+//                .shadow(color: Color.black.opacity(0.1), radius: 5, y: -5)
             }
-            .navigationBarHidden(true)
+            .navigationBarHidden(true)          // Hides the navigation bar completely if needed
             .background(Color.theme)
         }
     }

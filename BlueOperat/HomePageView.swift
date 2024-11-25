@@ -64,10 +64,10 @@ struct HomePageView: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 24) {
                                     CircularGroupCard(image: "ratsGroup", title: nil)
-                                    CircularGroupCard(image: nil, title: "Rats")
+                                    CircularGroupCard(image: "ratsGroup", title: nil)
                                     CircularGroupCard(image: "grassGroup", title: nil)
                                 }
-                                .padding(.horizontal, 30)
+                                .padding(.horizontal, 24)
                             }
                         }
                         .padding(.top, 28)
@@ -93,7 +93,7 @@ struct HomePageView: View {
                                     location: "Meet at Darling Harbour, W Hotel"
                                 )
                             }
-                            .padding(.horizontal)
+                            .padding(.horizontal, 24)
                         }
                     }
                 }
@@ -167,25 +167,29 @@ struct ActivityCard: View {
     let date: String
     let time: String
     let location: String
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
-                        .font(.system(size: 20, weight: .semibold))
-                    
+                        .font(.system(size: 16, weight: .semibold))
+
                     Text("\(date), \(time)")
                         .foregroundColor(.gray)
-                    
+                        .font(.system(size: 14, weight: .regular))
+
                     HStack {
                         Image(systemName: "mappin.circle.fill")
-                            .foregroundColor(.red)
+                            .foregroundColor(.red.opacity(0.8))
                         Text(location)
+                            .font(.system(size: 14, weight: .regular))
                             .foregroundColor(.gray)
                     }
                 }
-                                
+
+                Spacer() // Ensures the ellipsis button stays to the far right
+
                 Button(action: {}) {
                     Image(systemName: "ellipsis")
                         .foregroundColor(.black)
@@ -197,6 +201,7 @@ struct ActivityCard: View {
         .background(Color.theme.opacity(0.1))
         .cornerRadius(20)
         .shadow(color: Color.black.opacity(0.05), radius: 5)
+        .frame(maxWidth: .infinity) // Makes the card take full width of the container
     }
 }
 

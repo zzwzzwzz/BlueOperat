@@ -13,111 +13,110 @@ struct HomePageView: View {
     var body: some View {
         NavigationView {
             ZStack (alignment: .top) { // Outer ZStack to control layering
+                Image("homeBackground")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 200, height: 200, alignment: .topLeading) // Adjust size as needed
+                        .clipped() // Prevent overflow
+                        .alignmentGuide(.top) { _ in 0 } // Align to top
+                        .alignmentGuide(.leading) { _ in 0 } // Align to left
+                        .offset(x: -100, y: -100) // Move it further left (-20) without affecting other alignments
+                
                 VStack(spacing: 0) {
-                    // Header with logo and menu
-                    VStack(spacing: 0) {
-                        HStack {
-                            
-                            HStack(spacing: 0) {
-                                Text("Be")
-                                    .foregroundColor(.white)
-                                Text("There")
-                                    .foregroundColor(.black)
-                            }
-                            .font(.system(size: 36, weight: .bold))
-                            
-                            Spacer()
-                            
-                            Button(action: {}) {
-                                Image(systemName: "gearshape")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                                    .padding(.top, 10)
-                                    .padding(.trailing, 10)
-                            }
-                        }
-                        .padding()
-                        .background(Color.theme)
-                    }
                     
                     // Main content
                     ScrollView {
-                        VStack(spacing: 16) {
-                            // Search bar
-                            HStack {
-                                Image(systemName: "magnifyingglass")
-                                    .foregroundColor(.gray)
-                                TextField("Search", text: $searchText)
-                            }
-                            .padding(.horizontal, 15)
-                            .padding(.vertical, 10)
-                            .background(Color.white)
-                            .cornerRadius(20)
-                            .padding(.horizontal)
-                            .frame(height: 36)
-                            .padding(.top, 24)
-                            .shadow(color: Color.black.opacity(0.1), radius: 5)
+                        VStack(spacing: 0) {
                             
-                            // Your Groups section
-                            VStack(alignment: .leading, spacing: 15) {
-                                Text("Your Groups")
-                                    .font(.system(size: 24, weight: .semibold))
-                                    .padding(.horizontal)
+                            HStack ( spacing: 0){
+                                Text("Be")
+                                    .foregroundColor(.black)
                                 
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(spacing: 24) {
-                                        CircularGroupCard(image: "ratsGroup", title: nil)
-                                        CircularGroupCard(image: nil, title: "Rats")
-                                        CircularGroupCard(image: "grassGroup", title: nil)
-                                    }
-                                    .padding(.horizontal, 30)
-                                }
+                                Text("There")
+                                    .foregroundColor(.theme)
                             }
-                            .padding(.top, 16)
+                            .font(.system(size: 40, weight: .bold))
+                            .padding(.trailing, 200)
+                            .padding(.top, 20)
                             
-                            // Next Activity section
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Next Activity")
-                                    .font(.system(size: 24, weight: .semibold))
-                                    .padding(.horizontal)
-                                
-                                VStack(spacing: 16) {
-                                    ActivityCard(
-                                        title: "Karaoke City Run",
-                                        date: "Friday 28 Nov 2024",
-                                        time: "16:00 - 21:00",
-                                        location: "Meet at Darling Harbour, W Hotel"
-                                    )
-                                    
-                                    ActivityCard(
-                                        title: "Karaoke City Run",
-                                        date: "Friday 29 Nov 2024",
-                                        time: "16:00 - 21:00",
-                                        location: "Meet at Darling Harbour, W Hotel"
-                                    )
-                                }
+                        }
+
+                        // Search bar
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.gray)
+                            TextField("Search", text: $searchText)
+                        }
+                        .padding(.horizontal,16)
+                        .padding(.vertical, 10)
+                        .background(Color.white)
+                        .cornerRadius(20)
+                        .padding(.horizontal)
+                        .frame(height: 36)
+                        .shadow(color: Color.black.opacity(0.1), radius: 5)
+                        
+                        // Your Groups section
+                        VStack(alignment: .leading, spacing: 15) {
+                            Text("Your Groups")
+                                .font(.system(size: 24, weight: .semibold))
                                 .padding(.horizontal)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 24) {
+                                    CircularGroupCard(image: "ratsGroup", title: nil)
+                                    CircularGroupCard(image: nil, title: "Rats")
+                                    CircularGroupCard(image: "grassGroup", title: nil)
+                                }
+                                .padding(.horizontal, 30)
                             }
                         }
+                        .padding(.top, 28)
+                        
+                        // Next Activity section
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Next Activity")
+                                .font(.system(size: 24, weight: .semibold))
+                                .padding(.horizontal)
+                            
+                            VStack(spacing: 16) {
+                                ActivityCard(
+                                    title: "Karaoke City Run",
+                                    date: "Friday 28 Nov 2024",
+                                    time: "16:00 - 21:00",
+                                    location: "Meet at Darling Harbour, W Hotel"
+                                )
+                                
+                                ActivityCard(
+                                    title: "Karaoke City Run",
+                                    date: "Friday 29 Nov 2024",
+                                    time: "16:00 - 21:00",
+                                    location: "Meet at Darling Harbour, W Hotel"
+                                )
+                            }
+                            .padding(.horizontal)
+                        }
                     }
-                    .background(Color.white)
+                }
+                .background(Color.white)
                     .cornerRadius(30, corners: [.topLeft, .topRight])
                     .padding(.bottom, -1000) // Pulls the white frame down further
-                }
-//                .navigationBarHidden(true)
-                .background(Color.theme)
+                    .padding(.top, 88)
                 
                 // Rat image overlay
                 Image("homeRat")
                     .resizable()
-                    .frame(width: 130, height: 130)
+                    .frame(width: 140, height: 140)
                     .padding(.top, 10)
                     .offset(x: 50)
                     .zIndex(1) // Ensures the rat stays on top
+                }
+//                .navigationBarHidden(true)
+                .background(Color.theme.opacity(0.6))
+
             }
         }
     }
-}
+
 
 // Helper extensions for corner radius
 extension View {

@@ -108,23 +108,6 @@ struct UserCard: View {
     }
 }
 
-struct TabBarItem: View {
-    let icon: String
-    let text: String
-    let isSelected: Bool
-    
-    var body: some View {
-        VStack(spacing: 4) {
-            Image(systemName: icon)
-                .foregroundColor(isSelected ? Color.theme : .gray)
-            Text(text)
-                .font(.system(size: 12))
-                .foregroundColor(isSelected ? Color.theme : .gray)
-        }
-        .frame(maxWidth: .infinity)
-    }
-}
-
 #Preview {
     ActiveStatusView()
 }

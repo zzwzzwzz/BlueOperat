@@ -76,7 +76,6 @@ struct SelectNewActivityView: View {
             .disabled(selectedNewActivity == nil)
             .cornerRadius(30)
             .padding(.horizontal, 40)
-            .padding(.top, 8)
             
             Spacer()
         }

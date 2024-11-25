@@ -17,7 +17,7 @@ struct ChatRoomView: View {
     @State private var showLeaveAlert = false
     @State private var navigateToActiveStatus = false
     @State private var navigateToSelectNewActivity = false
-    @State private var shouldPopToRoot = false  // New state for root navigation
+    @State private var shouldPopToRoot = false
 
     private let systemPrompt = """
     You are RatBot, a friendly and knowledgeable rat with a passion for both rat-related topics and general conversation. Your personality traits:
@@ -55,15 +55,12 @@ struct ChatRoomView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing){
                 Menu {
-                    // See Status Option
                     Button {
-                        // Action for "See Status"
                         navigateToActiveStatus = true
                     } label: {
                         Label("Active Status", systemImage: "info.circle")
                     }
                     
-                    // Leave Group Option
                     Button(role: .destructive) {
                         showLeaveAlert = true
                     } label: {
@@ -73,10 +70,9 @@ struct ChatRoomView: View {
                     Image(systemName: "ellipsis.circle")
                         .font(.title2)
                         .foregroundColor(.button)
+                }
+            }
         }
-    }
-        }
-        
         .alert("Are you sure?", isPresented: $showLeaveAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Leave", role: .destructive) {
@@ -85,31 +81,31 @@ struct ChatRoomView: View {
         } message: {
             Text("Do you really want to leave the group?")
         }
-        .background(
-            NavigationLink(
-                destination: SelectNewActivityView(onActivitySelected: {
-                    onLeaveGroup()
-                    shouldPopToRoot = true  // Set flag to pop to root
-                }),
-                isActive: $navigateToSelectNewActivity,
-                label: { EmptyView() }
-            )
-        )
-        .onChange(of: shouldPopToRoot) { newValue in
+        // Updated NavigationLink syntax for SelectNewActivityView
+        .navigationDestination(isPresented: $navigateToSelectNewActivity) {
+            SelectNewActivityView(onActivitySelected: {
+                onLeaveGroup()
+                shouldPopToRoot = true
+            })
+        }
+        // Updated NavigationLink syntax for ActiveStatusView
+        .navigationDestination(isPresented: $navigateToActiveStatus) {
+            ActiveStatusView()
+        }
+        // Updated onChange syntax
+        .onChange(of: shouldPopToRoot) { _, newValue in
             if newValue {
-                // Pop to root view
                 presentationMode.wrappedValue.dismiss()
             }
         }
-        
     }
 
     func sendMessage() {
         guard !newMessage.isEmpty else { return }
         
-        let messageToSend = newMessage.trimmingCharacters(in: .whitespacesAndNewlines) // Remove extra whitespace
+        let messageToSend = newMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        if !messageToSend.isEmpty { // Only send if there's actual content
+        if !messageToSend.isEmpty {
             conversation.append(MessageModel(message: messageToSend, isBot: false))
             newMessage = ""
             if messageToSend.contains("@ratbot"){
@@ -146,8 +142,4 @@ struct ChatRoomView: View {
             return "Squeaks! Something went wrong with my whiskers. Could you try again?"
         }
     }
-}
-
-#Preview {
-    ChatRoomView(groupName: "Test Group", onLeaveGroup: {})
 }

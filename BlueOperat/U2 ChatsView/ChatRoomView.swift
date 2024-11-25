@@ -81,18 +81,15 @@ struct ChatRoomView: View {
         } message: {
             Text("Do you really want to leave the group?")
         }
-        // Updated NavigationLink syntax for SelectNewActivityView
         .navigationDestination(isPresented: $navigateToSelectNewActivity) {
             SelectNewActivityView(onActivitySelected: {
                 onLeaveGroup()
                 shouldPopToRoot = true
             })
         }
-        // Updated NavigationLink syntax for ActiveStatusView
         .navigationDestination(isPresented: $navigateToActiveStatus) {
             ActiveStatusView()
         }
-        // Updated onChange syntax
         .onChange(of: shouldPopToRoot) { _, newValue in
             if newValue {
                 presentationMode.wrappedValue.dismiss()

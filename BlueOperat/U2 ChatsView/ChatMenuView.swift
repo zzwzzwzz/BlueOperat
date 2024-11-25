@@ -193,7 +193,7 @@ struct MessageBubble: View {
             if message.isBot { Spacer() }
         }
         .listRowSeparator(.hidden)
-        //.padding(.horizontal)
+        .padding(.horizontal)
             
     }
 }

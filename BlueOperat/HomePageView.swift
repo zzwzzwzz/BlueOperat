@@ -110,7 +110,7 @@ struct HomePageView: View {
                     .offset(x: 50)
                     .zIndex(1) // Ensures the rat stays on top
                 }
-//                .navigationBarHidden(true)
+                .navigationBarHidden(true)
                 .background(Color.theme.opacity(0.6))
 
             }

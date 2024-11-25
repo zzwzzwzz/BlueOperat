@@ -164,80 +164,60 @@ struct ActivityTimeSlot: View {
 // Displays a screen for past activities with a scrollable list of time slots.
 struct PastActivityView: View {
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                // Date header for "Past" status
-                ActivityDateHeader(
-                    day: "28",
-                    weekday: "Thu",
-                    month: "Nov",
-                    year: "2024",
-                    status: "Past"
+        VStack(spacing: 0) {
+            // Date header for "Past" status
+            ActivityDateHeader(
+                day: "28",
+                weekday: "Thu",
+                month: "Nov",
+                year: "2024",
+                status: "Past"
+            )
+            .background(Color.theme)
+            
+            // Main content
+            VStack(spacing: 20) {
+                // Updated WeekdayHeader with navigation
+                WeekdayHeader(
+                    dates: ["26", "27", "28", "29", "30", "1", "2"],
+                    selectedDate: "28"
                 )
-                .background(Color.theme)
                 
-                // Main content
-                VStack(spacing: 20) {
-                    // Week calendar header
-                    WeekdayHeader(
-                        dates: ["26", "27", "28", "29", "30", "1", "2"],
-                        selectedDate: "28"
-                    )
-                    
-                    // Column headers
-                    HStack {
-                        Text("Time")
-                        Text("Activities")
-                            .padding(.horizontal, 40)
-                        Spacer()
-                        Image(systemName: "arrow.up.arrow.down")
-                    }
-                    .font(.system(size: 14))
-                    .foregroundColor(.gray)
-                    .padding(.horizontal)
-                    
-                    // Scrollable list of activity time slots
-                    ScrollView {
-                        VStack(spacing: 0) {
-                            ActivityTimeSlot(
-                                startTime: "11:35",
-                                endTime: "13:05",
-                                activity: "Mindful and Demure",
-                                location: "Metal Stick and Circle",
-                                organizer: "Whatever",
-                                isPast: true
-                            )
-                        }
+                // Column headers
+                HStack {
+                    Text("Time")
+                    Text("Activities")
+                        .padding(.horizontal, 40)
+                    Spacer()
+                    Image(systemName: "arrow.up.arrow.down")
+                }
+                .font(.system(size: 14))
+                .foregroundColor(.gray)
+                .padding(.horizontal)
+                
+                // Scrollable list of activity time slots
+                ScrollView {
+                    VStack(spacing: 0) {
+                        ActivityTimeSlot(
+                            startTime: "11:35",
+                            endTime: "13:05",
+                            activity: "Mindful and Demure",
+                            location: "Metal Stick and Circle",
+                            organizer: "Whatever",
+                            isPast: true
+                        )
                     }
                 }
-                .padding(.top, 20)
-                .background(Color.white)
-                .cornerRadius(30, corners: [.topLeft, .topRight])
-                .frame(maxHeight: .infinity, alignment: .top)
-                .padding(.bottom, -1000) // Pulls the white frame down further
             }
-            .navigationBarHidden(true)
-            .background(Color.theme)
+            .padding(.top, 20)
+            .background(Color.white)
+            .cornerRadius(30, corners: [.topLeft, .topRight])
+            .frame(maxHeight: .infinity, alignment: .top)
+            .padding(.bottom, -1000)
         }
-    }
-}
-
-// Represents a single item in the tab bar (e.g., Home, Chats, Activities).
-struct PastTabBarItem: View {
-    let icon: String
-    let text: String
-    var isSelected: Bool
-    
-    var body: some View {
-        VStack(spacing: 4) {
-            Image(systemName: icon)
-                .font(.system(size: 20))
-                .foregroundColor(isSelected ? Color.theme : Color.gray)
-            Text(text)
-                .font(.caption)
-                .foregroundColor(isSelected ? Color.theme : Color.gray)
-        }
-        .frame(maxWidth: .infinity)
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+        .background(Color.theme)
     }
 }
 

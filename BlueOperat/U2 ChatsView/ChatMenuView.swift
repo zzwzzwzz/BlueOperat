@@ -27,7 +27,7 @@ struct ChatMenuView: View {
                     }
                     .tag(2)
                 
-                FutureActivityView()
+                ActivityContainerView()
                     .tabItem {
                         Label("Activities", systemImage: "leaf")
                     }

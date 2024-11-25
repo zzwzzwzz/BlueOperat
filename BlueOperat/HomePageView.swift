@@ -10,17 +10,24 @@ import SwiftUI
 struct HomePageView: View {
     @State private var searchText = ""
     
+    // Example groups data
+    let groups: [(name: String, image: String)] = [
+        (name: "Family of Hamsters", image: "hamsterImage"),
+        (name: "Random Grass Group", image: "grassGroup"),
+        (name: "Rat Chat 123", image: "ratsGroup")
+    ]
+    
     var body: some View {
         NavigationView {
             ZStack (alignment: .top) { // Outer ZStack to control layering
                 Image("homeBackground")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 200, height: 200, alignment: .topLeading) // Adjust size as needed
-                        .clipped() // Prevent overflow
-                        .alignmentGuide(.top) { _ in 0 } // Align to top
-                        .alignmentGuide(.leading) { _ in 0 } // Align to left
-                        .offset(x: -100, y: -100) // Move it further left (-20) without affecting other alignments
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 200, height: 200, alignment: .topLeading) // Adjust size as needed
+                    .clipped() // Prevent overflow
+                    .alignmentGuide(.top) { _ in 0 } // Align to top
+                    .alignmentGuide(.leading) { _ in 0 } // Align to left
+                    .offset(x: -100, y: -100) // Move it further left (-20) without affecting other alignments
                 
                 VStack(spacing: 0) {
                     
@@ -40,7 +47,7 @@ struct HomePageView: View {
                             .padding(.top, 20)
                             
                         }
-
+                        
                         // Search bar
                         HStack {
                             Image(systemName: "magnifyingglass")
@@ -63,9 +70,16 @@ struct HomePageView: View {
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 24) {
-                                    CircularGroupCard(image: "ratsGroup", title: nil)
-                                    CircularGroupCard(image: "ratsGroup", title: nil)
-                                    CircularGroupCard(image: "grassGroup", title: nil)
+                                    ForEach(groups, id: \.name) { group in
+                                        NavigationLink(
+                                            destination: ChatRoomView(
+                                                groupName: group.name,
+                                                onLeaveGroup: { print("\(group.name) left.") }
+                                            )
+                                        ) {
+                                            CircularGroupCard(image: group.image, title: group.name)
+                                        }
+                                    }
                                 }
                                 .padding(.horizontal, 24)
                             }
@@ -98,9 +112,9 @@ struct HomePageView: View {
                     }
                 }
                 .background(Color.white)
-                    .cornerRadius(30, corners: [.topLeft, .topRight])
-                    .padding(.bottom, -1000) // Pulls the white frame down further
-                    .padding(.top, 88)
+                .cornerRadius(30, corners: [.topLeft, .topRight])
+                .padding(.bottom, -1000) // Pulls the white frame down further
+                .padding(.top, 88)
                 
                 // Rat image overlay
                 Image("homeRat")
@@ -109,14 +123,13 @@ struct HomePageView: View {
                     .padding(.top, 10)
                     .offset(x: 50)
                     .zIndex(1) // Ensures the rat stays on top
-                }
-                .navigationBarHidden(true)
-                .background(Color.theme.opacity(0.6))
-
             }
+            .navigationBarHidden(true)
+            .background(Color.theme.opacity(0.6))
+            
         }
     }
-
+}
 
 // Helper extensions for corner radius
 extension View {
@@ -149,7 +162,7 @@ struct CircularGroupCard: View {
                 Circle()
                     .fill(Color.theme.opacity(0.3))
                     .overlay(
-                        Text(title)
+                        Text(title.prefix(1)) // Show the first letter of the title
                             .font(.title3)
                             .foregroundColor(.white)
                     )
@@ -167,18 +180,18 @@ struct ActivityCard: View {
     let date: String
     let time: String
     let location: String
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.system(size: 16, weight: .semibold))
-
+                    
                     Text("\(date), \(time)")
                         .foregroundColor(.gray)
                         .font(.system(size: 14, weight: .regular))
-
+                    
                     HStack {
                         Image(systemName: "mappin.circle.fill")
                             .foregroundColor(.red.opacity(0.8))
@@ -187,9 +200,9 @@ struct ActivityCard: View {
                             .foregroundColor(.gray)
                     }
                 }
-
+                
                 Spacer() // Ensures the ellipsis button stays to the far right
-
+                
                 Button(action: {}) {
                     Image(systemName: "ellipsis")
                         .foregroundColor(.black)

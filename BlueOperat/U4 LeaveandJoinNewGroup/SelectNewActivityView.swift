@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-public struct SelectNewActivityView: View {
+struct SelectNewActivityView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var selectedNewActivity: String? = nil
+    var onActivitySelected: () -> Void
     
     let newActivity = [
         "🎨 Art", "🐶 Animals", "💃 Dance", "🧵 DIY",
@@ -16,7 +18,7 @@ public struct SelectNewActivityView: View {
         "🏜️ Outdoor", "⚽️ Sports"
     ]
     
-    public var body: some View {
+    var body: some View {
         VStack {
             Spacer()
             VStack(spacing: 8) {
@@ -36,14 +38,14 @@ public struct SelectNewActivityView: View {
                 .padding(.horizontal, 20)
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 30) {
-                    ForEach(newActivity, id: \.self) { newActivity in
-                        Button(action: { selectedNewActivity = newActivity }) {
-                            Text(newActivity)
+                    ForEach(newActivity, id: \.self) { activity in
+                        Button(action: { selectedNewActivity = activity }) {
+                            Text(activity)
                                 .font(.system(size: 16))
                                 .fontWeight(.regular)
-                                .foregroundColor(selectedNewActivity == newActivity ? .white : .black)
+                                .foregroundColor(selectedNewActivity == activity ? .white : .black)
                                 .frame(maxWidth: .infinity, minHeight: 50)
-                                .background(selectedNewActivity == newActivity ? Color.theme : Color.theme.opacity(0.2))
+                                .background(selectedNewActivity == activity ? Color.theme : Color.theme.opacity(0.2))
                                 .cornerRadius(30)
                         }
                         .padding(.horizontal, 10)
@@ -57,9 +59,12 @@ public struct SelectNewActivityView: View {
             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 4)
             .padding(.horizontal, 20)
             .padding(.bottom, 40)
-
+            
             Button(action: {
-                // Next button action
+                if selectedNewActivity != nil {
+                    onActivitySelected()
+                    presentationMode.wrappedValue.dismiss()
+                }
             }) {
                 Text("Next")
                     .font(.system(size: 20))
@@ -67,10 +72,10 @@ public struct SelectNewActivityView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
             }
-            .background(Color.theme)
+            .background(selectedNewActivity != nil ? Color.theme : Color.theme.opacity(0.2))
+            .disabled(selectedNewActivity == nil)
             .cornerRadius(30)
             .padding(.horizontal, 40)
-            
             .padding(.top, 8)
             
             Spacer()
@@ -81,5 +86,5 @@ public struct SelectNewActivityView: View {
 }
 
 #Preview {
-    SelectNewActivityView()
+    SelectNewActivityView(onActivitySelected: {})
 }
